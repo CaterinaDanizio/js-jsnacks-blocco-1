@@ -1,61 +1,68 @@
-// CONSEGNA jsnack 1
-//Partendo da un array semplice tipo:
-// var myArray = ['Michele', 'Fabio', 'Roberto', 'Giovanni', 'Simone', 'Chiara'];
-// chiediamo all’utente con 2 prompt due numeri tra 0 e la lunghezza dell’array
-// quindi creiamone uno nuovo con solo i valori che hanno la posizione compresa tra i due numeri inseriti dall’utente
+// CONSEGNA:
+// Creare un array di oggetti di squadre di calcio. Ogni squadra avrà diverse proprietà: nome, punti fatti, falli subiti.
+// Nome sarà l’unica proprietà da compilare, le altre saranno tutte settate a 0.
 
-// Array di partenza
-var nomi = ['Michele', 'Fabio', 'Roberto', 'Giovanni', 'Simone', 'Chiara', 'Marta', 'Greta'];
+// Array squadre
 
-var max = parseInt(prompt("Inserisci un numero da 0 a 7"));
-var min = parseInt(prompt("Inserisci un numero maggiore del precedente ma sempre tra 0 e 7"));
+var footballTeam =  [
+  {
+   'nome': "Milan",
+   'punti': 0,
+   'falli': 0
+ },
 
-// Nuovo array con i nuovi valori
-var nuovoNomi = nomi.slice(max,min+1);
-console.log(nuovoNomi);
+  {
+   'nome': "Inter",
+   'punti': 0,
+   'falli': 0
+ },
 
-// CONSEGNA jsnack 2
-// dato questo array di obj iniziale:
-// var arrayObj = [
-//   {name: 'Poppy', type: 'tshirt', color: 'red'},
-//   {name: 'Jumping', type: 'occhiali', color: 'blue'},
-//   {name: 'CrissCross', type: 'scarpe', color: 'black'},
-//   {name: 'Jenny', type: 'borsa', color: 'pink'},
-// ];
-//Creiamo una copia dell’array di partenza e aggiungiamo ai singoli elementi (quindi ogni oggetto del nuovo array) una nuova proprietà position che contiene una lettera casuale. Non dobbiamo modificare l’array iniziale
+  {
+   'nome': "Juventus",
+   'punti': 0,
+   'falli': 0
+  },
 
-// Array iniziale
-var arrayObj = [
-  {name: 'Poppy', type: 'tshirt', color: 'red'},
-  {name: 'Jumping', type: 'occhiali', color: 'blue'},
-  {name: 'CrissCross', type: 'scarpe', color: 'black'},
-  {name: 'Jenny', type: 'borsa', color: 'pink'},
-];
-console.log("Il vecchio array è questo ", arrayObj);
+  {
+   'nome': "Manchester United",
+   'punti': 0,
+   'falli': 0
+ },
 
-// Copia dell'array
-var newArrayObj = [
-  {name: 'Poppy', type: 'tshirt', color: 'red'},
-  {name: 'Jumping', type: 'occhiali', color: 'blue'},
-  {name: 'CrissCross', type: 'scarpe', color: 'black'},
-  {name: 'Jenny', type: 'borsa', color: 'pink'},
-];
-
-console.log("Il nuovo array è questo ", newArrayObj);
-
-// Aggiungere la chiave "position" che ha come valore una lettera casuale
-for (var key in newArrayObj) {
-  newArrayObj[key].position = genLetterRand();
-}
-
-// Funzione: generazione lettera casuale
-var str = "";
-function genLetterRand() {
-  var lettere = "abcdefghijklmnopqrstuvwxyz";
-  var l = lettere.length;
-  var n = 1; // lunghezza stringa
-  for(var i=0; i<n; i++) {
-  var str = lettere[Math.floor(Math.random()*l)];
-  return str;
+ {
+  'nome': "Real Madrid",
+  'punti': 0,
+  'falli': 0
   }
+]
+
+console.log(footballTeam);
+
+// Generare numeri random al posto degli 0 nelle proprietà: punti fatti e falli subiti
+
+
+for (var key in footballTeam) {
+  footballTeam[key].punti = Math.floor(Math.random() * 10 +1);
+  footballTeam[key].falli = Math.floor(Math.random() * 10 +1);
 }
+
+console.log(footballTeam);
+
+// Variante con funzione
+for (var i = 0; i < footballTeam.length; i++) {
+  footballTeam[i].punti = generaNumero(1,10);
+  footballTeam[i].falli = generaNumero(1,10);
+  console.log(footballTeam[i]);
+}
+
+// Funzioni math random
+function generaNumero(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+// Classifica squadre
+
+footballTeam.sort(function(a,b) {
+  return b.punti - a.punti;
+});
+console.log("Classifica aggiornata:" , footballTeam);
