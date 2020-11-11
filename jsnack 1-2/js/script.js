@@ -34,13 +34,10 @@ var arrayObj = [
 console.log("Il vecchio array è questo ", arrayObj);
 
 // Copia dell'array
-var newArrayObj = [
-  {name: 'Poppy', type: 'tshirt', color: 'red'},
-  {name: 'Jumping', type: 'occhiali', color: 'blue'},
-  {name: 'CrissCross', type: 'scarpe', color: 'black'},
-  {name: 'Jenny', type: 'borsa', color: 'pink'},
-];
-
+var newArrayObj = [];
+for (i=0; i< newArrayObj.length; i++) {
+  newArrayObj.push(arrayObj[i]);
+}
 console.log("Il nuovo array è questo ", newArrayObj);
 
 // Aggiungere la chiave "position" che ha come valore una lettera casuale
